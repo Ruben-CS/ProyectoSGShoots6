@@ -71,23 +71,46 @@ namespace ProyectoSGShoots6.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required(ErrorMessage = "*Nombre requerido")]
+            [StringLength(35)]
+            [Display(Name = "Nombre")]
+            public string nombre { get; set; }
+
+            [Required(ErrorMessage = "*Apellido paterno requerido")]
+            [StringLength(50)]
+            [Display(Name = "Apellido Paterno")]
+            public string apellidoPaterno { get; set; }
+
+            [Required(ErrorMessage = "*Apellido materno requerido")]
+            [StringLength(50)]
+            [Display(Name = "Apellido Materno")]
+            public string apellidoMaterno { get; set; }
+            
+            [Required(ErrorMessage = "*Numero de celular requerido")]
+            [StringLength(50)]
+            [Display(Name = "Numero de celular")]
+            public string celular { get; set; }
+            [Required(ErrorMessage = "*Numero de carnet requerido")]
+            [StringLength(9)]
+            [Display(Name = "Numero de carnet")]
+            public string carnet { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "*Correo requerido")]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Correo")]
             public string Email { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Contraseña requerida")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
             /// <summary>
@@ -95,8 +118,8 @@ namespace ProyectoSGShoots6.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar contraseña")]
+            [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -114,11 +137,16 @@ namespace ProyectoSGShoots6.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                user.nombre = Input.nombre;
+                user.apellidoPaterno = Input.apellidoPaterno;
+                user.apellidoMaterno = Input.apellidoMaterno;
+                user.celular = Input.celular;
+                user.carnet = Input.carnet;
+                
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
-
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
