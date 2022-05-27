@@ -1,12 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+        <UserSecretsId>9530d875-d2e4-4abb-8ce9-951959ebea23</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="6.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />

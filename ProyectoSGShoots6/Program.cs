@@ -2,13 +2,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProyectoSGShoots6.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDBContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDBContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDBContextConnection") ??
+                       throw new InvalidOperationException(
+                           "Connection string 'ApplicationDBContextConnection' not found.");
+var anotherString = builder.Configuration.GetConnectionString("AzureConnectionDBContext");
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+{
+    microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
+    microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
+});
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
-    options.UseSqlServer(connectionString));;
+    options.UseSqlServer(anotherString));
+;
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDBContext>();;
+    .AddEntityFrameworkStores<ApplicationDBContext>();
+;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
