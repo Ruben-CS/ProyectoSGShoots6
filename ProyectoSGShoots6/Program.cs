@@ -2,10 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoSGShoots6.Areas.Identity.Data;
 using ProyectoSGShoots6.Data;
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDBContextConnection") ??
-                       throw new InvalidOperationException(
-                           "Connection string 'ApplicationDBContextConnection' not found.");
-var anotherString = builder.Configuration.GetConnectionString("AzureConnectionDBContext");
+var azureDbConnection = builder.Configuration.GetConnectionString("AzureConnectionDBContext");
 var services = builder.Services;
 var configuration = builder.Configuration;
 
@@ -15,16 +12,16 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
     microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
 });
 
-builder.Services.AddDbContext<ApplicationDBContext>(options =>
-    options.UseSqlServer(anotherString));
-;
-builder.Services.AddDbContext<ModelosDBContext>(options => 
-    options.UseSqlServer(anotherString));
+services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(azureDbConnection,
+    providerOptions => 
+    providerOptions.EnableRetryOnFailure()));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+services.AddDbContext<ModelosDBContext>(options => options.UseSqlServer(azureDbConnection, providerOptions =>
+    providerOptions.EnableRetryOnFailure()));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
+        options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDBContext>();
-;
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

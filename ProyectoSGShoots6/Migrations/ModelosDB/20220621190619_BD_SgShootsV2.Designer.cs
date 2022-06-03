@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoSGShoots6.Data;
 
@@ -11,9 +12,10 @@ using ProyectoSGShoots6.Data;
 namespace ProyectoSGShoots6.Migrations.ModelosDB
 {
     [DbContext(typeof(ModelosDBContext))]
-    partial class ModelosDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220621190619_BD_SgShootsV2")]
+    partial class BD_SgShootsV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

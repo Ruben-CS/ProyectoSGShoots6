@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoSGShoots6.Data;
 
@@ -11,9 +12,10 @@ using ProyectoSGShoots6.Data;
 namespace ProyectoSGShoots6.Migrations.ModelosDB
 {
     [DbContext(typeof(ModelosDBContext))]
-    partial class ModelosDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220621160050_BD_SgShoots")]
+    partial class BD_SgShoots
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +87,7 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
 
                     b.HasIndex("PaqueteFK");
 
-                    b.ToTable("Cotizacion");
+                    b.ToTable("Cotizaciones");
                 });
 
             modelBuilder.Entity("ProyectoSGShoots6.Models.Paquete", b =>
@@ -113,7 +115,7 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
 
                     b.HasIndex("TipoPaqueteCodigo");
 
-                    b.ToTable("Paquete");
+                    b.ToTable("Paquetes");
                 });
 
             modelBuilder.Entity("ProyectoSGShoots6.Models.PreciosIndividuales", b =>

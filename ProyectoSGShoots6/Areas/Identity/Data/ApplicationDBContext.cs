@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ProyectoSGShoots6.Models;
 namespace ProyectoSGShoots6.Areas.Identity.Data;
 
 public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
@@ -19,6 +20,8 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
         builder.ApplyConfiguration(new ApplicationUserConfiguration());
     }
+
+    public DbSet<ProyectoSGShoots6.Models.Paquete>? Paquete { get; set; }
 }
 
 public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
