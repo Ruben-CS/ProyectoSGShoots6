@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProyectoSGShoots6.Areas.Identity.Data;
+using ProyectoSGShoots6.Data;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDBContextConnection") ??
                        throw new InvalidOperationException(
@@ -18,6 +18,8 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(anotherString));
 ;
+builder.Services.AddDbContext<ModelosDBContext>(options => 
+    options.UseSqlServer(anotherString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDBContext>();

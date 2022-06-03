@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProyectoSGShoots6.Areas.Identity.Data;
-
 namespace ProyectoSGShoots6.Areas.Identity.Data;
 
 public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
