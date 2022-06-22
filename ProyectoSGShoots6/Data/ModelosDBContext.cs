@@ -13,5 +13,6 @@ public class ModelosDBContext : DbContext
     public DbSet<Cotizacion> Cotizaciones { get; set; }
     public DbSet<TipoPaquete> TipoPaquetes { get; set; }
     public DbSet<TipoProducto> TipoProductos { get; set; }
+    public DbSet<UnidadMedida> UnidadMedidas { get; set; }
     
 }

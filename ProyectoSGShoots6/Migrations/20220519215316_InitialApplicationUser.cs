@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProyectoSGShoots6.Migrations
 {
-    public partial class InitialApplicationUser : Migration
+    public partial class  InitialApplicationUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

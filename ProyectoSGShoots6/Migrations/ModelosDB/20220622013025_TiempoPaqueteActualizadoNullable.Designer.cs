@@ -12,8 +12,8 @@ using ProyectoSGShoots6.Data;
 namespace ProyectoSGShoots6.Migrations.ModelosDB
 {
     [DbContext(typeof(ModelosDBContext))]
-    [Migration("20220621160050_BD_SgShoots")]
-    partial class BD_SgShoots
+    [Migration("20220622013025_TiempoPaqueteActualizadoNullable")]
+    partial class TiempoPaqueteActualizadoNullable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,8 +98,9 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<TimeSpan>("Cobertura")
-                        .HasColumnType("time");
+                    b.Property<string>("Cobertura")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -160,12 +161,12 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("idTipoProducto")
+                    b.Property<int?>("TipoProductoIdTipoProducto")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("idTipoProducto");
+                    b.HasIndex("TipoProductoIdTipoProducto");
 
                     b.ToTable("Productos");
                 });
@@ -186,9 +187,6 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("PrecioIndiviualID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PreciosId")
                         .HasColumnType("int");
 
@@ -201,19 +199,36 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
 
             modelBuilder.Entity("ProyectoSGShoots6.Models.TipoProducto", b =>
                 {
+                    b.Property<int>("IdTipoProducto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTipoProducto"), 1L, 1);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdTipoProducto");
+
+                    b.ToTable("TipoProductos");
+                });
+
+            modelBuilder.Entity("ProyectoSGShoots6.Models.UnidadMedida", b =>
+                {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoProductos");
+                    b.ToTable("UnidadMedidas");
                 });
 
             modelBuilder.Entity("CotizacionProductos", b =>
@@ -264,7 +279,7 @@ namespace ProyectoSGShoots6.Migrations.ModelosDB
                 {
                     b.HasOne("ProyectoSGShoots6.Models.TipoProducto", null)
                         .WithMany("Productos")
-                        .HasForeignKey("idTipoProducto");
+                        .HasForeignKey("TipoProductoIdTipoProducto");
                 });
 
             modelBuilder.Entity("ProyectoSGShoots6.Models.TipoPaquete", b =>

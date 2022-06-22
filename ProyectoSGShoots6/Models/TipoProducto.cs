@@ -5,7 +5,7 @@ namespace ProyectoSGShoots6.Models;
 
 public class TipoProducto
 {
-    [Key] public int Id { get; set; }
-    [ForeignKey("idTipoProducto")] public ICollection<Productos>? Productos { get; set; }
+    [Key] public int IdTipoProducto { get; set; }
+    public ICollection<Productos>? Productos { get; set; }
     [Required] public string Nombre { get; set; }
 }
