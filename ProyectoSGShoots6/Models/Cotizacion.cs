@@ -13,6 +13,6 @@ public class Cotizacion
     [Required] [DataType(DataType.Date)] public DateTime FechaFin { get; set; }
     [Required] public double PrecioFinal { get; set; }
     [Required] [MaxLength(255)] public string Ubicacion { get; set; }
-    public ICollection<Productos> Productos { get; set; }
+    [Required] public ICollection<Productos>? Productos { get; set; }
     [Required] public bool Estado { get; set; }
 }

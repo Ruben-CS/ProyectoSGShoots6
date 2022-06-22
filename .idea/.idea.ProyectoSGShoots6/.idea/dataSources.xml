@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DevelopmentAzureDB@ruben-azure.database.windows.net" uuid="6f0e9d0a-1968-4f0f-bb1f-5eda3aa42dd7">
+    <data-source source="LOCAL" name="BD_SgShoots@ruben-server.database.windows.net" uuid="6f0e9d0a-1968-4f0f-bb1f-5eda3aa42dd7">
       <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://ruben-azure.database.windows.net:1433;database=DevelopmentAzureDB</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://ruben-server.database.windows.net:1433;database=BD_SgShoots</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

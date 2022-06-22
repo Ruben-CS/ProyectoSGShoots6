@@ -4,7 +4,7 @@
 
 namespace ProyectoSGShoots6.Migrations.ModelosDB
 {
-    public partial class ProductoTipoProducto : Migration
+    public partial class TiempoPaqueteActualizadoNullable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
