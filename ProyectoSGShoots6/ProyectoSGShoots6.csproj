@@ -8,27 +8,39 @@
   </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Model\**" />
+      <Content Remove="Model\**" />
+      <EmbeddedResource Remove="Model\**" />
+      <None Remove="Model\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="6.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.5" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
       <PackageReference Include="XLocalizer" Version="1.0.3" />
       <PackageReference Include="XLocalizer.TagHelpers" Version="1.1.0" />
       <PackageReference Include="XLocalizer.Translate" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Data\" />
       <Folder Include="Migrations\ModelosDB" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Migrations\ModelosDB" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Paquete\Index.cshtml" />
     </ItemGroup>
 
 </Project>
