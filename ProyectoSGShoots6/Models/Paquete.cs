@@ -1,14 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
-namespace ProyectoSGShoots6.Models;
-
-public class Paquete
+namespace ProyectoSGShoots6.Models
 {
-    [Key] public int ID { get; set; }
-    [Required] public string Nombre { get; set; }
-    [Required] public string? Cobertura { get; set; }
-    [Required] public double PrecioBasePaquete { get; set; }
-    public ICollection<Productos>? Productos { get; set; }
-    [ForeignKey("PaqueteFK")]public ICollection<Cotizacion>? Cotizaciones { get; set; }
+    public partial class Paquete
+    {
+        public Paquete()
+        {
+            Cotizaciones = new HashSet<Cotizacione>();
+            DetalleProductos = new HashSet<DetalleProducto>();
+        }
+
+        public int Id { get; set; }
+        public string Nombre { get; set; } = null!;
+        public string Cobertura { get; set; } = null!;
+        public double PrecioBasePaquete { get; set; }
+        public int? TipoPaqueteCodigo { get; set; }
+
+        public virtual TipoPaquete? TipoPaqueteCodigoNavigation { get; set; }
+        public virtual ICollection<Cotizacione> Cotizaciones { get; set; }
+        public virtual ICollection<DetalleProducto> DetalleProductos { get; set; }
+    }
 }

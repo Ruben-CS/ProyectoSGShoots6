@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoSGShoots6.Areas.Identity.Data;
 using ProyectoSGShoots6.Data;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 var azureDbConnection = builder.Configuration.GetConnectionString("AzureConnectionDBContext");
 var services = builder.Services;
@@ -13,15 +15,24 @@ services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
 });
 
 services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(azureDbConnection,
-    providerOptions => 
+    providerOptions =>
+        providerOptions.EnableRetryOnFailure()));
+
+services.AddDbContext<ModelosDbContext>(options => options.UseSqlServer(azureDbConnection, providerOptions =>
     providerOptions.EnableRetryOnFailure()));
 
-services.AddDbContext<ModelosDBContext>(options => options.UseSqlServer(azureDbConnection, providerOptions =>
-    providerOptions.EnableRetryOnFailure()));
-
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
         options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDBContext>();
+//configuracion de contrasena
+builder.Services.Configure<IdentityOptions>(options => {
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 0;
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

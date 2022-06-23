@@ -20,8 +20,6 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
         builder.ApplyConfiguration(new ApplicationUserConfiguration());
     }
-
-    public DbSet<ProyectoSGShoots6.Models.Paquete>? Paquete { get; set; }
 }
 
 public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>

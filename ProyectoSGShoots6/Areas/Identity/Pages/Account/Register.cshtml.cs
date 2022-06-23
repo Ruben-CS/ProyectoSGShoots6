@@ -91,7 +91,7 @@ namespace ProyectoSGShoots6.Areas.Identity.Pages.Account
             [Display(Name = "Numero de celular")]
             public string celular { get; set; }
             [Required(ErrorMessage = "*Numero de carnet requerido")]
-            [StringLength(9)]
+            [StringLength(11)]
             [Display(Name = "Numero de carnet")]
             public string carnet { get; set; }
             /// <summary>
@@ -108,7 +108,7 @@ namespace ProyectoSGShoots6.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required(ErrorMessage = "Contraseña requerida")]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "La contraseña debe tener al menos 6 caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
             public string Password { get; set; }
