@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoSGShoots6.Models
 {
@@ -19,11 +18,8 @@ namespace ProyectoSGShoots6.Models
         public string ApellidoPaterno { get; set; } = null!;
         public string ApellidoMaterno { get; set; } = null!;
         public string Celular { get; set; } = null!;
-        [Required]
-        [MaxLength(11)]
         public string Carnet { get; set; } = null!;
-
-        public bool? Estado { get; set; } = true;
+        public bool? Estado { get; set; }
         public string? UserName { get; set; }
         public string? NormalizedUserName { get; set; }
         public string? Email { get; set; }

@@ -6,13 +6,13 @@ using ProyectoSGShoots6.Models;
 
 namespace ProyectoSGShoots6.Data
 {
-    public partial class ModelosDbContext : DbContext
+    public partial class ModelosDBContext : DbContext
     {
-        public ModelosDbContext()
+        public ModelosDBContext()
         {
         }
 
-        public ModelosDbContext(DbContextOptions<ModelosDbContext> options)
+        public ModelosDBContext(DbContextOptions<ModelosDBContext> options)
             : base(options)
         {
         }
@@ -37,6 +37,7 @@ namespace ProyectoSGShoots6.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=tcp:ruben-server.database.windows.net,1433;Initial Catalog=BD_SgShoots;Persist Security Info=False;User ID=ruben_f;Password=Ilpcgamailp19;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
@@ -80,7 +81,7 @@ namespace ProyectoSGShoots6.Data
                     .HasColumnName("apellidoPaterno");
 
                 entity.Property(e => e.Carnet)
-                    .HasMaxLength(9)
+                    .HasMaxLength(11)
                     .HasColumnName("carnet");
 
                 entity.Property(e => e.Celular)

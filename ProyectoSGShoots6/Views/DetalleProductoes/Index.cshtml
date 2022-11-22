@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ProyectoSGShoots6.Models.DetalleProducto>
+
+@{
+}
+<style>
+    .fondoCaja{
+    background-color: white;
+    padding:3rem;
+    border-radius: 15px;
+    }
+    nav{
+        background-color:black;
+    }
+</style>
+<div class="fondoCaja">
+    <h1>Detalles productos </h1>
+
+    <table class="table table-hover table-responsive">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Paquetes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Productos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnidadMedida)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paquetes.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Productos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida.Descripcion)
+                </td>
+                <td>
+                    @*                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PaquetesId">Ver</a> |
+*@
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.PaquetesId}, new {id=item.ProductosId}) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

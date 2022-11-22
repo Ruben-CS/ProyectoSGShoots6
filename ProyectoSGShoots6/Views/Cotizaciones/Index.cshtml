@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProyectoSGShoots6.Models.Cotizacione>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    nav{
+    background-color:black ;
+    }
+    .fondoCaja{
+        background-color: white;
+        padding:3rem;
+        border-radius: 15px;
+        }
+</style>
+<div class="fondoCaja">
+
+<h1 CLASS="text-center">CREAR NUEVA COTIZACION</h1>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCotizacion)
+            </th>
+            <th>
+                Paquete
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCotizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaqueteFkNavigation.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Idcotizacion">Editar</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Idcotizacion">Ver</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Idcotizacion">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
