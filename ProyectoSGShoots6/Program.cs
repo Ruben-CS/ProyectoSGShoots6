@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoSGShoots6.Areas.Identity.Data;
-using ProyectoSGShoots6.Data;
+// using ProyectoSGShoots6.Data;
 using Microsoft.AspNetCore.Identity;
+using ProyectoSGShoots6.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var azureDbConnection = builder.Configuration.GetConnectionString("AzureConnectionDBContext");
@@ -18,14 +19,16 @@ services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(azur
     providerOptions =>
         providerOptions.EnableRetryOnFailure()));
 
-services.AddDbContext<ModelosDbContext>(options => options.UseSqlServer(azureDbConnection, providerOptions =>
+services.AddDbContext<ModelosDBContext>(options => options.UseSqlServer(azureDbConnection, providerOptions =>
     providerOptions.EnableRetryOnFailure()));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
-        options.SignIn.RequireConfirmedAccount = true)
+        options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDBContext>();
+
 //configuracion de contrasena
-builder.Services.Configure<IdentityOptions>(options => {
+builder.Services.Configure<IdentityOptions>(options =>
+{
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireNonAlphanumeric = false;

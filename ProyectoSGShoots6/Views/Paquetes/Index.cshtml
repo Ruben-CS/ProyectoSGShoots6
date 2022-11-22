@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProyectoSGShoots6.Models.Paquete>
+
+@{
+    ViewData["Title"] = "PAQUETES EXISTENTES";
+}
+<style>
+        .fondoCaja{
+    background-color: white;
+    padding:3rem;
+    border-radius: 15px;
+    }
+</style>
+<div  class="fondoCaja">
+
+<h1 class="text-center">PAQUETES EXISTENTES</h1>
+<p>
+@*    <a class="btn btn-success" asp-action="Create">Crear nuevo paquete</a>
+*@</p>
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+@*                @Html.DisplayNameFor(model => model.DetalleProductos)
+*@            </th>
+            <th>
+                Horas cobertura
+@*               @Html.DisplayNameFor(model => model.Cobertura) 
+*@            </th>
+            <th>
+                Precio Base
+@*                @Html.DisplayNameFor(model => "Precio"/*model.PrecioBasePaquete*/)
+*@            </th>
+            <th>
+                Tipo paquete
+@*                @Html.DisplayNameFor(model => "Tipo Paquete" /*model.TipoPaqueteCodigoNavigation*/)
+*@            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cobertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioBasePaquete)
+                @*@Html.DisplayFor(modelItem => item.DetalleProducto)*@
+
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.TipoPaqueteCodigoNavigation.Nombre)
+            </td>
+            <td>
+@*                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+*@                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Ver</a> |
+                  <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+
+                  
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+

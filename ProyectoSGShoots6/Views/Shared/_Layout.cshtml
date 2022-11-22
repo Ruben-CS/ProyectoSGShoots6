@@ -1,45 +1,125 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
+@using Microsoft.AspNetCore.Identity
+@using ProyectoSGShoots6.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<style>
+    *{
+        font-family:Century Gothic;
+    }
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+    body{
+        background-image: url("Images/FondoGif.gif");
+        font-family: "Lato", sans-serif;
+          transition: background-color .5s;
+    }
+</style>
+<html lang="en">
+
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - ProyectoSGShoots6</title>
+    <title>@ViewData["Title"] - BySGShoots</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/ProyectoSGShoots6.styles.css" asp-append-version="true"/>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProyectoSGShoots6</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img style="width:215px; height: 75px; margin: 1rem" src="~/Images/Recurso 26.png"/> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @*
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">PORTFOLIO</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+                    
                 </ul>
             </div>
+            *@
+
             <partial name="_LoginPartial"/>
         </div>
+        
     </nav>
+    @if (SignInManager.IsSignedIn(User))
+                {
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a asp-controller="Productoes">Productos</a>
+                        <a asp-controller="Paquetes">Paquetes</a>
+@*                        <a style="margin-left:1rem; margin-right: 1rem" class="nav-link btn btn-outline-light navOpcion" ><span style="color: white">PORTFOLIO</span></a>
+*@                        @* <a asp-area="" asp-controller="DetalleProductoController" asp-action="Index">PaquetePredeterminado</a> *@
+                        @*<a asp-controller="DetalleProductos">DetalleProducto</a>*@
+                        <a asp-controller="Cotizaciones">Cotizaciones</a>
+
+                        @*<a href="#">Productos</a>
+                        <a href="#">Portfolio</a>*@
+                        <a class="" id="register" asp-area="Identity" asp-page="/Account/Register">Registrar cuenta</a>
+
+                    </div>
+                    <div id="main">
+                        <span style="font-size:30px;cursor:pointer; color: white;" onclick="openNav()">&#9776; </span>
+                    </div>
+                }
 </header>
 <div class="container">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
+    
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2022 - ProyectoSGShoots6 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+   
+<footer class=" footer text-muted">
+    <div style="color:white" class="container">
+        &copy; 2022 - BySGShoots
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -48,3 +128,16 @@
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.body.style.backgroundColor = "white";
+    }
+</script>

@@ -1,8 +1,25 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using ProyectoSGShoots6.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1 style="font-size: 50px; color: white; font-family:Century Gothic" class="display-4"><b>¡BIENVENIDO! </b></h1>
+        <h3><b><span style="color: white;font-family:Century Gothic" >Mira lo nuevo de cotizaciones personalizadas.</span></b></h3>
+        <button style="font-family:Century Gothic" class="btn btn-light" href="https://docs.microsoft.com/aspnet/core">REALIZAR COTIZACION</button>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <BR>
+        <h4 style="font-size: 40px; color: white;font-family:Century Gothic"><b>BAILA, ESTAS SIENDO FILMADO</b></h4>
+        <button style="font-family:Century Gothic" class="btn btn-light" href="https://docs.microsoft.com/aspnet/core">VER PORTFOLIO</button>
+    </div>
+}

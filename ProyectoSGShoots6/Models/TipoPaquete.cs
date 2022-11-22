@@ -9,7 +9,7 @@ namespace ProyectoSGShoots6.Models
         {
             Paquetes = new HashSet<Paquete>();
         }
-        
+
         public int Codigo { get; set; }
         public string Nombre { get; set; } = null!;
         public bool Estado { get; set; }
